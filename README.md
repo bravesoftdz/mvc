@@ -1,4 +1,4 @@
-# Simple MVC PAttern
+# Simple MVC Pattern
 
 ## Installation
 + run the script ```"db.sql"``` in the folder migration
