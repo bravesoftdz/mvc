@@ -23,13 +23,19 @@ interface IPostData
  */
 class PostData implements IPostData
 {
+    private $data = [];
+
+    public function __construct()
+    {
+        $this->data = $_POST;
+    }
 
     public function get($key = '')
     {
         if ($key == ''){
-            return $_POST;
+            return $this->data;
         }
-        return empty($_POST[$key]) ? '' : $_POST[$key];
+        return empty($this->data[$key]) ? '' : $this->data[$key];
     }
 
 }

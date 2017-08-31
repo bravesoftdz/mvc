@@ -9,7 +9,7 @@ namespace Dykyi\Common;
 interface IGetData
 {
     /**
-     * Get post value
+     * Get get value
      *
      * @param $key
      * @return mixed
@@ -23,13 +23,19 @@ interface IGetData
  */
 class GetData implements IGetData
 {
+    private $data = [];
+
+    public function __construct()
+    {
+        $this->data = $_GET;
+    }
 
     public function get($key = '')
     {
         if ($key == ''){
-            return $_GET;
+            return $this->data;
         }
-        return empty($_GET[$key]) ? '' : $_GET[$key];
+        return empty($this->data[$key]) ? '' : $this->data[$key];
     }
 
 }
