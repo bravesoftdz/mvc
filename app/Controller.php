@@ -39,7 +39,7 @@ interface IController
 }
 
 /**
- * Class Controller
+ * Class AbstractController
  * @package Dykyi
  */
 abstract class AbstractController implements IController
@@ -123,5 +123,27 @@ abstract class AbstractController implements IController
         $this->session->remove('message');
         return $message;
     }
+
+    /**
+     * Error process function
+     *
+     * @param $err_type
+     * @param $err_msg
+     * @param $err_file
+     * @param $err_line
+     * @return bool
+     */
+    function myErrorHandler($err_type, $err_msg, $err_file, $err_line)
+    {
+        static $count = 0;
+        $count++;
+        echo "<div style=\"width:32px; height:32px; float:left; margin:0 12px 12px 0;\"></div>"
+            ."<b>Error №$count:</b><p>Sorry, but there was an error on this page. "
+            ."Please send the following message to the site administrator on the page <a href='#'>help</a>.</p>"
+            ."<p>Error type: <em>$err_type</em>, messsage: <em>$err_msg</em>, file: <em>$err_file</em>, line number: <em>$err_line</em>"
+            ."<hr color='red'>";
+        die();
+    }
+
 
 }

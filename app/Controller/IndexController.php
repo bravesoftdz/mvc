@@ -6,12 +6,12 @@ use Dykyi\AbstractController;
 use Dykyi\Model\UsersModel;
 
 /**
- * Class ControllerIndex
+ * Class IndexController
  * @package Dykyi
  *
  * @property UsersModel $userModel
  */
-class ControllerIndex extends AbstractController
+class IndexController extends AbstractController
 {
     protected $userModel;
 
