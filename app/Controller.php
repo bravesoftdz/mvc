@@ -46,10 +46,11 @@ abstract class AbstractController implements IController
 {
     protected $action;
     protected $route;
+    protected $layout = 'main';
+    protected $view;
 
     protected $post;
     protected $session;
-
 
     function __construct()
     {
@@ -83,8 +84,18 @@ abstract class AbstractController implements IController
         foreach ($params as $var => $value) {
             $this->$var = $value;
         }
-        $view = empty($this->route) ? $view : $this->route;
-        return require_once(ROOT_DIR.'/views/' . $view . '.php');
+
+        $view = empty($view) ? $this->route.'/'.$this->action : $view;
+        $this->view = file_get_contents(ROOT_DIR.'/views/' . $view . '.php');
+        return require_once(ROOT_DIR.'/views/layout/' . $this->layout . '.php');
+    }
+
+    /**
+     * @param $name
+     */
+    public function setLayout($name)
+    {
+        $this->layout = $name;
     }
 
     /**

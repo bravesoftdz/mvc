@@ -23,7 +23,7 @@ class IndexController extends AbstractController
 
     public function index()
     {
-        return $this->view('index', ['users' => $this->userModel->getAll()]);
+        return $this->view('', ['users' => $this->userModel->getAll()]);
     }
 
     public function test($var1, $var2)
