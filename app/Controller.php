@@ -51,6 +51,8 @@ abstract class AbstractController implements IController
 
     protected $post;
     protected $session;
+	
+    protected $message = '';
 
     function __construct()
     {
@@ -75,6 +77,17 @@ abstract class AbstractController implements IController
     }
 
     /**
+     * @param $file
+     *
+     * @return string
+     */
+    private function _requireToVar($file){
+        ob_start();
+        require($file);
+        return ob_get_clean();
+    }
+
+    /**
      * @param string $view
      * @param array $params
      * @return mixed
@@ -86,7 +99,7 @@ abstract class AbstractController implements IController
         }
 
         $view = empty($view) ? $this->route.'/'.$this->action : $view;
-        $this->view = file_get_contents(ROOT_DIR.'/views/' . $view . '.php');
+        $this->view = $this->_requireToVar(ROOT_DIR.'/views/' . $view . '.php');
         return require_once(ROOT_DIR.'/views/layout/' . $this->layout . '.php');
     }
 
